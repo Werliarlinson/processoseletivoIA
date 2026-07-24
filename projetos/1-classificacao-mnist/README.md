@@ -91,7 +91,7 @@ projetos/1-classificacao-mnist/
 O modelo foi desenvolvido baseado em uma arquitetura CNN simples e eficiente. Foram utilizados 3 blocos convolucionais encadeados, cada um composto por camadas `Conv2D`, `BatchNormalization` e `MaxPooling2D`. Para mitigar o overfitting, aplicou-se uma camada de `Dropout` (0.5) antecedendo a saída densa (Softmax). A validação utilizou um split de 20% do conjunto de treino original, e o treinamento contou com um callback de `EarlyStopping` (patience=3) monitorando a função de perda de validação.
 
 ### 2️⃣ Bibliotecas Utilizadas
-* TensorFlow / Keras (versão 2.21.0)
+* TensorFlow / Keras (versão 2.12.0)
 * NumPy (versão 2.4.6)
 * OS (biblioteca nativa do Python para lidar com variáveis de ambiente)
 
@@ -100,7 +100,7 @@ A otimização foi realizada convertendo o modelo original (.h5) para o formato 
 
 ### 4️⃣ Resultados Obtidos
 * **Acurácia de Validação Final:** 98.85%
-* **Tamanho do arquivo original (`model.h5`): 1.175 kb**
+* **Tamanho do arquivo original (`model.h5`): 1.178 kb**
 * **Tamanho do arquivo otimizado (`model.tflite`): 104 kb**
 
 ### 5️⃣ Comentários Adicionais (Opcional)
@@ -114,3 +114,5 @@ Amostra 2: predito=2 | real=2
 Amostra 3: predito=1 | real=1
 Amostra 4: predito=0 | real=0
 Amostra 5: predito=4 | real=4
+
+Como observado na saída acima, o modelo quantizado manteve sua integridade e conseguiu inferir corretamente que a amostra 1 se tratava do dígito 7, sem apresentar confusão com outras classes.
