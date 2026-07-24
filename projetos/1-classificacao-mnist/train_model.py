@@ -3,6 +3,7 @@ import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
 # Força o TensorFlow a usar o Keras 2, mesmo que a versão instalada seja 3, devido ao github Actions usar o Keras 2.
 os.environ["TF_USE_LEGACY_KERAS"] = "1"
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
