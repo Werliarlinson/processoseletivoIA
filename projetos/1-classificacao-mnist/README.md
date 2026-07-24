@@ -85,28 +85,32 @@ projetos/1-classificacao-mnist/
 
 ## 📝 Relatório do Candidato
 
-👤 **Nome Completo:**
+👤 **Nome Completo: Werliarlinson de Lima Sá Teles**
 
-### 1️⃣ Resumo da Arquitetura do Modelo
-
-Descreva, em palavras, a arquitetura da CNN implementada em `train_model.py` (número de blocos convolucionais, uso de batch normalization/dropout, estratégia de validação/early stopping).
+#### 1️⃣ Resumo da Arquitetura do Modelo
+O modelo foi desenvolvido baseado em uma arquitetura CNN simples e eficiente. Foram utilizados 3 blocos convolucionais encadeados, cada um composto por camadas `Conv2D`, `BatchNormalization` e `MaxPooling2D`. Para mitigar o overfitting, aplicou-se uma camada de `Dropout` (0.5) antecedendo a saída densa (Softmax). A validação utilizou um split de 20% do conjunto de treino original, e o treinamento contou com um callback de `EarlyStopping` (patience=3) monitorando a função de perda de validação.
 
 ### 2️⃣ Bibliotecas Utilizadas
-
-Liste as principais bibliotecas utilizadas, preferencialmente com suas versões.
+* TensorFlow / Keras (versão 2.21.0)
+* NumPy (versão 2.4.6)
+* OS (biblioteca nativa do Python para lidar com variáveis de ambiente)
 
 ### 3️⃣ Técnica de Otimização do Modelo
-
-Explique qual técnica foi utilizada para otimizar o modelo em `optimize_model.py`.
+A otimização foi realizada convertendo o modelo original (.h5) para o formato TensorFlow Lite (.tflite) através do `tf.lite.TFLiteConverter`. Durante a conversão, aplicou-se a técnica de quantização padrão da biblioteca (`tf.lite.Optimize.DEFAULT`), focando em reduzir a precisão dos pesos para minimizar o tamanho final do arquivo de arquitetura, focando na aplicação em Edge AI.
 
 ### 4️⃣ Resultados Obtidos
-
-Informe a acurácia de validação obtida e o tamanho dos arquivos `model.h5` e `model.tflite`.
+* **Acurácia de Validação Final:** 98.85%
+* **Tamanho do arquivo original (`model.h5`): 1.175 kb**
+* **Tamanho do arquivo otimizado (`model.tflite`): 104 kb**
 
 ### 5️⃣ Comentários Adicionais (Opcional)
-
-Dificuldades encontradas, decisões técnicas importantes, limitações do modelo, aprendizados durante o desafio.
+Durante o desenvolvimento no ambiente isolado (Dev Container), foi necessário desabilitar a varredura da biblioteca por instâncias de aceleração gráfica (GPU) via variáveis de ambiente para garantir que a execução ocorresse de forma fluida exclusivamente na CPU. O framework de Early Stopping atuou de maneira eficiente e abortou o treinamento na 9ª época.
 
 ### 6️⃣ Exemplo de Inferência
+Rodando inferencia em 5 amostras usando model.tflite:
 
-Cole a saída do terminal ao rodar `run_inference.py` (predito vs. real para as 5+ amostras), e comente brevemente se houve algum caso interessante (acerto ou erro) entre as amostras testadas.
+Amostra 1: predito=7 | real=7
+Amostra 2: predito=2 | real=2
+Amostra 3: predito=1 | real=1
+Amostra 4: predito=0 | real=0
+Amostra 5: predito=4 | real=4
