@@ -2,7 +2,6 @@ import numpy as np
 import tensorflow as tf
 import os
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 
 # ---------------------------------------------------------------------------
 # Projeto 1 — Inferência com o Modelo Otimizado (model.tflite)
@@ -15,7 +14,6 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "2"
 # ---------------------------------------------------------------------------
 
 N_SAMPLES = 5
-
 
 def main():
     import os
