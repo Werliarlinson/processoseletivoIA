@@ -1,6 +1,8 @@
 import os
 # Desabilita completamente a busca por GPU, evitando travamentos no contêiner
 os.environ["CUDA_VISIBLE_DEVICES"] = "-1"
+# Força o TensorFlow a usar o Keras 2, mesmo que a versão instalada seja 3, devido ao github Actions usar o Keras 2.
+os.environ["TF_USE_LEGACY_KERAS"] = "1"
 import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
